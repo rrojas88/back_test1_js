@@ -9,8 +9,6 @@ require('dotenv').config()
 const express = require('express') //llamamos a Express
 const app = express()            
 
-const port = 3003
-
 app.use( express.urlencoded({extended:false}) )
 app.use(express.json())
 
@@ -23,9 +21,10 @@ const conf = {
 	qa: { port: process.env.PORT_QA },
 	prod: { port: process.env.PORT_PROD },
 }
+const port = conf[envi].port
 
 app.listen(port, function () {
 	console.log(`Servidor corriendo en el puerto: ${port}`);
 	console.log(`---> ENV: ${envi}`);
-	console.log(`---> ENV puerto: ${conf[envi].port}`);
+	console.log(`---> ENV puerto: ${port}`);
 })
